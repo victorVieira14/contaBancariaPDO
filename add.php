@@ -37,7 +37,7 @@ $stmt->bindParam(':CEP', $cep);
  
 if ($stmt->execute())
 {
-    header('Location: index.php');
+    header('Location: form-list.php');
 }
 else
 {

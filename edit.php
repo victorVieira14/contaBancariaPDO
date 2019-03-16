@@ -36,7 +36,7 @@ $stmt->bindParam(':ID', $id, PDO::PARAM_INT);
  
 if ($stmt->execute())
 {
-    header('Location: index.php');
+    header('Location: form-list.php');
 }
 else
 {

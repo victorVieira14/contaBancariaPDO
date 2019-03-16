@@ -1,7 +1,7 @@
 <?php
 require 'functions.php';
 require 'init.php';
- 
+
 // pega o ID da URL
 $id = isset($_GET['idCliente']) ? (int) $_GET['idCliente'] : null;
  
