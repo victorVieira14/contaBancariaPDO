@@ -1,5 +1,6 @@
 <?php
  
+require_once 'functions.php';
 require_once 'init.php';
  
 $nome = isset($_POST['nomeCliente']) ? $_POST['nomeCliente'] : null;
@@ -21,7 +22,7 @@ if (empty($nome) || empty($email) || empty($senha) || empty($cpf) || empty($rg) 
 
 // atualiza o banco
 $PDO = db_connect();
-$sql = "UPDATE users SET nomeCliente = :NOME, email = :EMAIL, senha = :SENHA, RG = :RG, CPF = :CPF, endereco = :ENDERECO, telefone = :TELEFONE, cep = :CEP WHERE idCliente = :ID";
+$sql = "UPDATE cliente SET nomeCliente = :NOME, email = :EMAIL, senha = :SENHA, RG = :RG, CPF = :CPF, endereco = :ENDERECO, telefone = :TELEFONE, cep = :CEP WHERE idCliente = :ID";
 $stmt = $PDO->prepare($sql);
 $stmt->bindParam(':NOME', $nome);
 $stmt->bindParam(':EMAIL', $email);

@@ -63,8 +63,8 @@ $stmt->execute();
                             <td>{$linha['telefone']} </td>
                             <td>{$linha['cep']} </td>
                             <td>
-                                <a href='form-edit.php?id=<?php echo {$linha['idCliente']}'>Editar</a>
-                                <a href='delete.php?id=<?php echo {$linha['idCliente']} ?>' onclick='return confirm('Tem certeza de que deseja remover?');'>Remover</a>
+                                <a href='form-edit.php?idCliente={$linha['idCliente']}'>Editar</a>
+                                <a href='delete.php?idCliente={$linha['idCliente']} onclick='return confirm('Tem certeza de que deseja remover?');'>Remover</a>
                             </td>
                         </tr>";
                     }

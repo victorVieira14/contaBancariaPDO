@@ -14,7 +14,7 @@ if (empty($id))
  
 // busca os dados du usuário a ser editado
 $PDO = db_connect();
-$sql = "SELECT id, nomeCliente, email, senha, rg, cpf, endereco, telefone, cep FROM cliente WHERE id = :ID";
+$sql = "SELECT idCliente, nomeCliente, email, senha, rg, cpf, endereco, telefone, cep FROM cliente WHERE idCliente = :ID";
 $stmt = $PDO->prepare($sql);
 $stmt->bindParam(':ID', $id, PDO::PARAM_INT);
  
@@ -30,6 +30,8 @@ if (!is_array($user))
     exit;
 }
 ?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -50,35 +52,35 @@ if (!is_array($user))
                 <div class="row">
                     <div class="col-sm-6 md-6 lg-6">
                         <label >Nome:</label>
-                        <input type="text" name="nomeCliente" class="form-control" required="">        
+                        <input type="text" name="nomeCliente" class="form-control" value="<?php echo $user['nomeCliente'] ?>" required="">        
                     </div>
                     <div class="col-sm-6 md-6 lg-6">
                         <label >Email:</label>
-                        <input type="email" name="emailCliente" class="form-control" required="">        
+                        <input type="email" name="emailCliente" class="form-control" value="<?php echo $user['email'] ?>" required="">        
                     </div>
                     <div class="col-sm-6 md-6 lg-6">
                         <label >Senha:</label>
-                        <input type="password" name="senhaCliente" class="form-control" required="">        
+                        <input type="password" name="senhaCliente" class="form-control" value="<?php echo $user['senha'] ?>" required="">        
                     </div>
                     <div class="col-sm-6 md-6 lg-6">
                         <label >CPF:</label>
-                        <input type="text" id="cpf" name="cpfCliente" class="form-control" required="">        
+                        <input type="text" id="cpf" name="cpfCliente" class="form-control" value="<?php echo $user['CPF'] ?>" required="">        
                     </div>
                     <div class="col-sm-6 md-6 lg-6">
                         <label >RG:</label>
-                        <input type="text" id="rg" name="rgCliente" class="form-control" required="">        
+                        <input type="text" id="rg" name="rgCliente" class="form-control" value="<?php echo $user['RG'] ?>" required="">        
                     </div>
                     <div class="col-sm-6 md-6 lg-6">
                         <label >Endereço:</label>
-                        <input type="text" name="endCliente" class="form-control" required="">        
+                        <input type="text" name="endCliente" class="form-control" value="<?php echo $user['endereco'] ?>" required="">        
                     </div>
                     <div class="col-sm-6 md-6 lg-6">
                         <label >Telefone:</label>
-                        <input type="text" id="telefonePessoa" name="telCliente" class="form-control" required="">        
+                        <input type="text" id="telefonePessoa" name="telCliente" class="form-control" value="<?php echo $linha['telefone'] ?>" required="">        
                     </div>
                     <div class="col-sm-6 md-6 lg-6">
                         <label >CEP:</label>
-                        <input type="text" name="cepCliente" id="cep" class="form-control" required="">        
+                        <input type="text" name="cepCliente" id="cep" class="form-control" value="<?php echo $linha['cep'] ?>" required="">        
                     </div>
                 </div>
                 <input type="hidden" name="idCliente" value="<?php echo $id ?>">
