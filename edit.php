@@ -1,9 +1,7 @@
 <?php
  
-include_once 'functions.php';
-include_once 'init.php';
+require_once 'init.php';
  
-// pega os dados do formuário
 $nome = isset($_POST['nomeCliente']) ? $_POST['nomeCliente'] : null;
 $email = isset($_POST['emailCliente']) ? $_POST['emailCliente'] : null;
 $senha = isset($_POST['senhaCliente']) ? $_POST['senhaCliente'] : null;
@@ -12,18 +10,18 @@ $rg = isset($_POST['rgCliente']) ? $_POST['rgCliente'] : null;
 $endereco = isset($_POST['endCliente']) ? $_POST['endCliente'] : null;
 $telefone = isset($_POST['telCliente']) ? $_POST['telCliente'] : null;
 $cep = isset($_POST['cepCliente']) ? $_POST['cepCliente'] : null;
+$id = isset($_POST['idCliente']) ? $_POST['idCliente'] : null;
  
- 
-// validação (bem simples, só pra evitar dados vazios)
+// validação (bem simples, mais uma vez)
 if (empty($nome) || empty($email) || empty($senha) || empty($cpf) || empty($rg)  || empty($endereco) || empty($telefone) || empty($cep))
 {
     echo "Volte e preencha todos os campos";
     exit;
 }
 
-// insere no banco
+// atualiza o banco
 $PDO = db_connect();
-$sql = "INSERT INTO cliente(nomeCliente, email, senha, RG, CPF, endereco, telefone, cep) VALUES(:NOME,:EMAIL,:SENHA,:CPF,:RG,:ENDERECO,:TELEFONE,:CEP)";
+$sql = "UPDATE users SET nomeCliente = :NOME, email = :EMAIL, senha = :SENHA, RG = :RG, CPF = :CPF, endereco = :ENDERECO, telefone = :TELEFONE, cep = :CEP WHERE idCliente = :ID";
 $stmt = $PDO->prepare($sql);
 $stmt->bindParam(':NOME', $nome);
 $stmt->bindParam(':EMAIL', $email);
@@ -33,7 +31,7 @@ $stmt->bindParam(':RG', $rg);
 $stmt->bindParam(':ENDERECO', $endereco);
 $stmt->bindParam(':TELEFONE', $telefone);
 $stmt->bindParam(':CEP', $cep);
- 
+$stmt->bindParam(':ID', $id, PDO::PARAM_INT);
  
 if ($stmt->execute())
 {
@@ -41,6 +39,6 @@ if ($stmt->execute())
 }
 else
 {
-    echo "Erro ao cadastrar";
+    echo "Erro ao alterar";
     print_r($stmt->errorInfo());
 }

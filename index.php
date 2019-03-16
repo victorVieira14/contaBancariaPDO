@@ -1,23 +1,12 @@
 <?php
 include_once 'init.php';
+include_once 'functions.php';
  
 // abre a conexão
 $PDO = db_connect();
- 
-// SQL para contar o total de registros
-// A biblioteca PDO possui o método rowCount(), mas ele pode ser impreciso.
-// É recomendável usar a função COUNT da SQL
-// Veja o Exemplo 2 deste link: http://php.net/manual/pt_BR/pdostatement.rowcount.php
-$sql_count = "SELECT COUNT(*) AS total FROM cliente ORDER BY name ASC";
- 
+
 // SQL para selecionar os registros
-$sql = "SELECT id, nomeCliente, email, senha, rg, cpf, endereco, telefone, cep FROM cliente ORDER BY nome ASC";
- 
-// conta o toal de registros
-$stmt_count = $PDO->prepare($sql_count);
-$stmt_count->execute();
-//fetchColumn () retorna uma única coluna da próxima linha de um conjunto de resultados ouFALSEse não houver mais linhas.
-$total = $stmt_count->fetchColumn();
+$sql = "SELECT idCliente, nomeCliente, email, senha, RG, CPF, endereco, telefone, cep FROM cliente ORDER BY nome ASC";
  
 // seleciona os registros
 $stmt = $PDO->prepare($sql);
@@ -40,16 +29,13 @@ $stmt->execute();
  
         <h2>Lista de Usuários</h2>
  
-        <p>Total de usuários: <?php echo $total ?></p>
+    
  
-        <?php if ($total > 0): ?>
- 
-        <table width="50%" border="1">
+        <table  class="table">
             <thead>
                 <tr>
                     <th>Nome</th>
                     <th>Email</th>
-                    <th>Senha</th>
                     <th>RG</th>
                     <th>CPF</th>
                     <th>Endereco</th>
@@ -58,30 +44,33 @@ $stmt->execute();
                 </tr>
             </thead>
             <tbody>
-                <?php while ($user = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-                <tr>
-                    <td><?php echo $user['nomeCliente'] ?></td>
-                    <td><?php echo $user['email'] ?></td>
-                    <td><?php echo $user['senha'] ?></td>
-                    <td><?php echo $user['RG'] ?></td>
-                    <td><?php echo $user['CPF'] ?></td>
-                    <td><?php echo $user['endereco'] ?></td>
-                    <td><?php echo $user['telefone'] ?></td>
-                    <td><?php echo $user['cep'] ?></td>
 
-                    <td>
-                        <a href="form-edit.php?id=<?php echo $user['id'] ?>">Editar</a>
-                        <a href="delete.php?id=<?php echo $user['id'] ?>" onclick="return confirm('Tem certeza de que deseja remover?');">Remover</a>
-                    </td>
-                </tr>
-                <?php endwhile; ?>
+                <?php
+                include_once 'functions.php';
+
+                    $consulta = $PDO->query("SELECT * FROM cliente");
+                    
+                    
+                    while ($linha = $consulta->fetch(PDO::FETCH_ASSOC)) {
+                        //DADOS DO BD
+                        echo "
+                        <tr> 
+                            <td>{$linha['nomeCliente']} </td>
+                            <td>{$linha['email']} </td>
+                            <td>{$linha['RG']} </td>
+                            <td>{$linha['CPF']} </td>
+                            <td>{$linha['endereco']} </td>
+                            <td>{$linha['telefone']} </td>
+                            <td>{$linha['cep']} </td>
+                            <td>
+                                <a href='form-edit.php?id=<?php echo {$linha['idCliente']}'>Editar</a>
+                                <a href='delete.php?id=<?php echo {$linha['idCliente']} ?>' onclick='return confirm('Tem certeza de que deseja remover?');'>Remover</a>
+                            </td>
+                        </tr>";
+                    }
+                    
+                ?>
             </tbody>
         </table>
- 
-        <?php else: ?>
- 
-        <p>Nenhum usuário registrado</p>
- 
-        <?php endif; ?>
     </body>
 </html>
