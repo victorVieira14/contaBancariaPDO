@@ -18,11 +18,11 @@ $passwordHash = make_hash($password);
  
 $PDO = db_connect();
  
-$sql = "SELECT id, nome FROM usuarios WHERE email = :email AND senha = :password";
+$sql = "SELECT idCliente, nomeCliente FROM cliente WHERE email = :EMAIL AND senha = :PASSWORD";
 $stmt = $PDO->prepare($sql);
  
-$stmt->bindParam(':email', $email);
-$stmt->bindParam(':password', $password);
+$stmt->bindParam(':EMAIL', $email);
+$stmt->bindParam(':PASSWORD', $password);
  
 $stmt->execute();
  
@@ -39,7 +39,7 @@ $user = $users[0];
  
 session_start();
 $_SESSION['logged_in'] = true;
-$_SESSION['user_id'] = $user['id'];
-$_SESSION['user_name'] = $user['nome'];
+$_SESSION['user_id'] = $user['idCliente'];
+$_SESSION['user_name'] = $user['nomeCliente'];
  
 header('Location: indexLogin.php');
