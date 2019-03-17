@@ -14,7 +14,7 @@ if (empty($id))
  
 // busca os dados du usuário a ser editado
 $PDO = db_connect();
-$sql = "SELECT idCliente, nomeCliente, email, senha, rg, cpf, endereco, telefone, cep FROM cliente WHERE idCliente = :ID";
+$sql = "SELECT idCliente, nomeCliente, email, senha, RG, CPF, endereco, telefone, cep FROM cliente WHERE idCliente = :ID";
 $stmt = $PDO->prepare($sql);
 $stmt->bindParam(':ID', $id, PDO::PARAM_INT);
  
@@ -76,11 +76,11 @@ if (!is_array($user))
                     </div>
                     <div class="col-sm-6 md-6 lg-6">
                         <label >Telefone:</label>
-                        <input type="text" id="telefonePessoa" name="telCliente" class="form-control" value="<?php echo $linha['telefone'] ?>" required="">        
+                        <input type="text" id="telefonePessoa" name="telCliente" class="form-control" value="<?php echo $user['telefone'] ?>" required="">        
                     </div>
                     <div class="col-sm-6 md-6 lg-6">
                         <label >CEP:</label>
-                        <input type="text" name="cepCliente" id="cep" class="form-control" value="<?php echo $linha['cep'] ?>" required="">        
+                        <input type="text" name="cepCliente" id="cep" class="form-control" value="<?php echo $user['cep'] ?>" required="">        
                     </div>
                 </div>
                 <input type="hidden" name="idCliente" value="<?php echo $id ?>">
@@ -105,7 +105,6 @@ if (!is_array($user))
             $('#cep').mask('00000-000');
             $('#rg').mask('00.000.000-0');
     </script>
-    
     
 </body>
 </html>

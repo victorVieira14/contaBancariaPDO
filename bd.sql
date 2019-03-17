@@ -1,9 +1,3 @@
-CREATE DATABASE images;
-
-use images;
-
-CREATE TABLE recebidos(img varchar(100) not null);
-
 CREATE DATABASE contaBancaria;
 use contaBancaria;
 CREATE TABLE cliente(
