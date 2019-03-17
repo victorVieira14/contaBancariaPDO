@@ -23,16 +23,12 @@ $stmt->execute();
  
     <body>
          
-        <h1>Sistema de Cadastro</h1>
-         
-        <p><a href="form-add.php">Adicionar Usuário</a></p>
+        <h1 class="display-3 text-center mb-5">Sistema de Cadastro</h1>
  
-        <h2>Lista de Usuários</h2>
- 
-    
- 
+        <p class="display-4 pl-4 "><i class="fas fa-user"></i>Lista de usuarios<a href="form-add.php" class="btn btn-md btn-danger">Adicionar Usuário</a></p>
+       
         <table  class="table">
-            <thead>
+            <thead class="bg-dark text-light">
                 <tr>
                     <th>Nome</th>
                     <th>Email</th>
@@ -41,6 +37,8 @@ $stmt->execute();
                     <th>Endereco</th>
                     <th>Telefone</th>
                     <th>CEP</th>
+                    <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -64,7 +62,7 @@ $stmt->execute();
                             <td>{$linha['cep']} </td>
                             <td>
                                 <a href='form-edit.php?idCliente={$linha['idCliente']}'>Editar</a>
-                                <a href='delete.php?idCliente={$linha['idCliente']} onclick='return confirm('Tem certeza de que deseja remover?');'>Remover</a>
+                                <a href='delete.php?idCliente={$linha['idCliente']}' onclick='return confirm('Tem certeza de que deseja remover?');'>Remover</a>
                             </td>
                         </tr>";
                     }
@@ -72,5 +70,8 @@ $stmt->execute();
                 ?>
             </tbody>
         </table>
+
+        <script src="JS/all.min.js"></script>
+        <script src="JS/jquery.min.js"></script>
     </body>
 </html>
