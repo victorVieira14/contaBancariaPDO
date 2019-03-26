@@ -6,7 +6,7 @@ include_once 'functions.php';
 $PDO = db_connect();
 
 // SQL para selecionar os registros
-$sql = "SELECT idCliente, nomeCliente, email, senha, RG, CPF, endereco, telefone, cep FROM cliente ORDER BY nome ASC";
+$sql = "SELECT idCliente, nomeCliente, email, senha, RG, CPF, endereco, telefone, cep, numConta, saldo FROM cliente ORDER BY nome ASC";
  
 // seleciona os registros
 $stmt = $PDO->prepare($sql);
@@ -22,10 +22,18 @@ $stmt->execute();
     </head>
  
     <body>
-         
+
+
+        <?php 
+
+            require 'navbar.php';
+        
+        ?>
+
+
         <h1 class="display-3 text-center mb-5">Sistema de Cadastro</h1>
  
-        <p class="display-4 pl-4 "><i class="fas fa-user"></i>Lista de usuarios<a href="form-add.php" class="btn btn-md btn-danger">Adicionar Usuário</a></p>
+        <p class="display-4 pl-4 "><i class="fas fa-user"></i>Lista de usuarios
        
         <table  class="table">
             <thead class="bg-dark text-light">
@@ -37,6 +45,8 @@ $stmt->execute();
                     <th>Endereco</th>
                     <th>Telefone</th>
                     <th>CEP</th>
+                    <th>Numero da conta</th>
+                    <th>Saldo</th>
                     <th></th>
                     <th></th>
                 </tr>
@@ -60,6 +70,8 @@ $stmt->execute();
                             <td>{$linha['endereco']} </td>
                             <td>{$linha['telefone']} </td>
                             <td>{$linha['cep']} </td>
+                            <td>{$linha['numConta']} </td>
+                            <td>{$linha['saldo']} </td>
                             <td>
                                 <a href='form-edit.php?idCliente={$linha['idCliente']}'>Editar</a>
                                 <a href='delete.php?idCliente={$linha['idCliente']}' onclick='return confirm('Tem certeza de que deseja remover?');'>Remover</a>

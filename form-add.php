@@ -11,7 +11,7 @@ require 'init.php';
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
 </head>
 <body style="background-image:url(img/fundo.jpg); background-size:cover; background-repeat: no-repeat">
-<div class="hidden" style="visibility: hidden; height:80px;"></div>
+<div class="hidden" style="visibility: hidden; height:40px;"></div>
     
     <div class="container">
     <div class="card p-4">
@@ -51,6 +51,14 @@ require 'init.php';
                     <div class="col-sm-6 md-6 lg-6">
                         <label >CEP:</label>
                         <input type="text" name="cepCliente" id="cep" class="form-control" required="">        
+                    </div>
+                    <div class="col-sm-6 md-6 lg-6">
+                        <label >Numero da conta:</label>
+                        <input type="text" name="numConta" id="numConta" class="form-control" required="">        
+                    </div>
+                    <div class="col-sm-6 md-6 lg-6">
+                        <label >Saldo:</label>
+                        <input type="text" name="saldo" id="saldo" class="form-control" required="">        
                     </div>
                 </div>
 

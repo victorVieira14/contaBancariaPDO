@@ -14,7 +14,7 @@ if (empty($id))
  
 // busca os dados du usuário a ser editado
 $PDO = db_connect();
-$sql = "SELECT idCliente, nomeCliente, email, senha, RG, CPF, endereco, telefone, cep FROM cliente WHERE idCliente = :ID";
+$sql = "SELECT idCliente, nomeCliente, email, senha, RG, CPF, endereco, telefone, cep, numConta, saldo FROM cliente WHERE idCliente = :ID";
 $stmt = $PDO->prepare($sql);
 $stmt->bindParam(':ID', $id, PDO::PARAM_INT);
  
@@ -81,6 +81,14 @@ if (!is_array($user))
                     <div class="col-sm-6 md-6 lg-6">
                         <label >CEP:</label>
                         <input type="text" name="cepCliente" id="cep" class="form-control" value="<?php echo $user['cep'] ?>" required="">        
+                    </div>
+                    <div class="col-sm-6 md-6 lg-6">
+                        <label >Número da conta:</label>
+                        <input type="text" name="numConta" id="numConta" class="form-control" value="<?php echo $user['numConta'] ?>" required="">        
+                    </div>
+                    <div class="col-sm-6 md-6 lg-6">
+                        <label >Saldo:</label>
+                        <input type="text" name="saldo" id="saldo" class="form-control" value="<?php echo $user['saldo'] ?>" required="">        
                     </div>
                 </div>
                 <input type="hidden" name="idCliente" value="<?php echo $id ?>">

@@ -12,7 +12,8 @@ $rg = isset($_POST['rgCliente']) ? $_POST['rgCliente'] : null;
 $endereco = isset($_POST['endCliente']) ? $_POST['endCliente'] : null;
 $telefone = isset($_POST['telCliente']) ? $_POST['telCliente'] : null;
 $cep = isset($_POST['cepCliente']) ? $_POST['cepCliente'] : null;
- 
+$numeroConta = isset($_POST['numConta']) ? $_POST['numConta'] : null;
+$saldo = isset($_POST['saldo']) ? $_POST['saldo'] : null;
  
 // validação (bem simples, só pra evitar dados vazios)
 if (empty($nome) || empty($email) || empty($senha) || empty($cpf) || empty($rg)  || empty($endereco) || empty($telefone) || empty($cep))
@@ -23,7 +24,7 @@ if (empty($nome) || empty($email) || empty($senha) || empty($cpf) || empty($rg) 
 
 // insere no banco
 $PDO = db_connect();
-$sql = "INSERT INTO cliente(nomeCliente, email, senha, RG, CPF, endereco, telefone, cep) VALUES(:NOME,:EMAIL,:SENHA,:CPF,:RG,:ENDERECO,:TELEFONE,:CEP)";
+$sql = "INSERT INTO cliente(nomeCliente, email, senha, RG, CPF, endereco, telefone, cep, numConta, saldo) VALUES(:NOME,:EMAIL,:SENHA,:CPF,:RG,:ENDERECO,:TELEFONE,:CEP, :NUMCONTA, :SALDO)";
 $stmt = $PDO->prepare($sql);
 $stmt->bindParam(':NOME', $nome);
 $stmt->bindParam(':EMAIL', $email);
@@ -33,6 +34,8 @@ $stmt->bindParam(':RG', $rg);
 $stmt->bindParam(':ENDERECO', $endereco);
 $stmt->bindParam(':TELEFONE', $telefone);
 $stmt->bindParam(':CEP', $cep);
+$stmt->bindParam(':NUMCONTA', $numeroConta);
+$stmt->bindParam(':SALDO', $saldo);
  
  
 if ($stmt->execute())
