@@ -70,7 +70,7 @@ $stmt->execute();
                             <td>{$linha['endereco']} </td>
                             <td>{$linha['telefone']} </td>
                             <td>{$linha['cep']} </td>
-                            <td>{$linha['numConta']} </td>
+                            <td align='center'>{$linha['numConta']} </td>
                             <td>{$linha['saldo']} </td>
                             <td>
                                 <a href='form-edit.php?idCliente={$linha['idCliente']}'>Editar</a>
