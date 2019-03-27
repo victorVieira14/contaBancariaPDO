@@ -18,10 +18,10 @@ $stmt->execute();
     <head>
         <meta charset="utf-8">
         <link href="css/bootstrap.min.css">
-        <title>Sistema de Cadastro</title>
+        <title>Sistema de Listagem</title>
     </head>
  
-    <body>
+    <body style="background-image:url(img/teste.jpg); background-size:cover; background-repeat: no-repeat">
 
 
         <?php 
@@ -29,14 +29,11 @@ $stmt->execute();
             require 'navbar.php';
         
         ?>
-
-
-        <h1 class="display-3 text-center mb-5">Sistema de Cadastro</h1>
- 
-        <p class="display-4 pl-4 "><i class="fas fa-user"></i>Lista de usuarios
+        <div style="visibility: hidden; height: 100px;"></div>
+        <p class="display-4 pl-4 text-center mr-5 text-white"><i class="fas fa-user mr-4"></i>Lista de usuarios
        
         <table  class="table">
-            <thead class="bg-dark text-light">
+            <thead class="bg-info text-light">
                 <tr>
                     <th>Nome</th>
                     <th>Email</th>
@@ -51,7 +48,7 @@ $stmt->execute();
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="bg-white">
 
                 <?php
                 include_once 'functions.php';
@@ -72,9 +69,10 @@ $stmt->execute();
                             <td>{$linha['cep']} </td>
                             <td align='center'>{$linha['numConta']} </td>
                             <td>{$linha['saldo']} </td>
+                            <td></td>
                             <td>
-                                <a href='form-edit.php?idCliente={$linha['idCliente']}'>Editar</a>
-                                <a href='delete.php?idCliente={$linha['idCliente']}' onclick='return confirm('Tem certeza de que deseja remover?');'>Remover</a>
+                                <a href='form-edit.php?idCliente={$linha['idCliente']}'><i class='fas fa-edit ml-5' style='font-size:23px;'></i></a>
+                                <a href='delete.php?idCliente={$linha['idCliente']}' onclick='return confirm('Tem certeza de que deseja remover?');'><i class='fas fa-times-circle text-danger ml-4' style='font-size:23px;'></i></a>
                             </td>
                         </tr>";
                     }

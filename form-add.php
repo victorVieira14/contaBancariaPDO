@@ -6,14 +6,21 @@ require 'init.php';
 <html lang="pt-br">
 <head>
     <meta charset="utf-8">
-    <title>Formulario</title>
+    <title>Formulario de cadastro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
 </head>
 <body style="background-image:url(img/fundo.jpg); background-size:cover; background-repeat: no-repeat">
+
+    <?php 
+
+        require 'navbar.php';
+        
+    ?>
+
 <div class="hidden" style="visibility: hidden; height:40px;"></div>
     
-    <div class="container">
+    <div class="container pb-5">
     <div class="card p-4">
         <div class="card-body">
             <h1 class="text-center display-4">Cadastrar Cliente</h1>
@@ -72,6 +79,12 @@ require 'init.php';
         </div>
     </div>
     </div>
+
+    <?php 
+
+        require 'footer.php';
+        
+    ?>
 
     <script src="JS/all.min.js"></script>
     <script src="JS/jquery.min.js"></script>

@@ -41,9 +41,16 @@ if (!is_array($user))
     <link rel="stylesheet" type="text/css" media="screen" href="css/bootstrap.min.css">
 </head>
 <body style="background-image:url(img/fundo.jpg); background-size:cover; background-repeat: no-repeat">
+
+    <?php 
+
+        require 'navbar.php';
+        
+    ?>
+
 <div class="hidden" style="visibility: hidden; height:40px;"></div>
     
-    <div class="container">
+    <div class="container pb-5">
     <div class="card p-4">
         <div class="card-body">
             <h1 class="text-center display-4">Cadastrar Cliente</h1>
