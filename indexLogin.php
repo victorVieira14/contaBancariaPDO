@@ -31,7 +31,7 @@ require 'functions.php';
         <h1 class="display-4 text-center">Sistema de Login</h1>
  
         <?php if (isLoggedIn()): ?>
-            <div class="text-center"><p>Olá, <?php echo $_SESSION['user_name']; ?>. Entre no seu <a href="painel.php">Painel</a> | <a href="logout.php">Sair</a></p></div>
+            <div class="text-center"><p>Olá, <?php echo $_SESSION['user_name']; ?>.     Direcione-se para o seu <a href="painel.php">Painel</a> | <a href="logout.php">Sair</a></p></div>
         <?php else: ?>
             <p class="text-center">Olá, visitante. Faça o seu <a href="form-login.php">Login</a></p>
         <?php endif; ?>
