@@ -80,12 +80,6 @@ require 'init.php';
     </div>
     </div>
 
-    <?php 
-
-        require 'footer.php';
-        
-    ?>
-
     <script src="JS/all.min.js"></script>
     <script src="JS/jquery.min.js"></script>
     <script src="JS/jquery.mask.js"></script>    
