@@ -16,14 +16,14 @@ $numeroConta = isset($_POST['numConta']) ? $_POST['numConta'] : null;
 $saldo = isset($_POST['saldo']) ? $_POST['saldo'] : null;
  
 // validação (bem simples, só pra evitar dados vazios)
-if (empty($nome) || empty($email) || empty($senha) || empty($cpf) || empty($rg)  || empty($endereco) || empty($telefone) || empty($cep))
-{
+if (empty($nome) || empty($email) || empty($senha) || empty($cpf) || empty($rg)  || empty($endereco) || empty($telefone) || empty($cep)){
     echo "Volte e preencha todos os campos";
     exit;
 }
 
 // insere no banco
 $PDO = db_connect();
+
 $sql = "INSERT INTO cliente(nomeCliente, email, senha, RG, CPF, endereco, telefone, cep, numConta, saldo) VALUES(:NOME,:EMAIL,:SENHA,:CPF,:RG,:ENDERECO,:TELEFONE,:CEP, :NUMCONTA, :SALDO)";
 $stmt = $PDO->prepare($sql);
 $stmt->bindParam(':NOME', $nome);
@@ -37,13 +37,10 @@ $stmt->bindParam(':CEP', $cep);
 $stmt->bindParam(':NUMCONTA', $numeroConta);
 $stmt->bindParam(':SALDO', $saldo);
  
- 
-if ($stmt->execute())
-{
+if ($stmt->execute()){
     header('Location: form-list.php');
 }
-else
-{
+else{
     echo "Erro ao cadastrar";
     print_r($stmt->errorInfo());
 }
